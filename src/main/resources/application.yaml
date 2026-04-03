@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: dashboard
+
+
+  data:
+    mongodb:
+      uri: mongodb+srv://varunyadava77:**Cloud12Winter**@cluster0.7zyhiuf.mongodb.net/finance_dashboard?retryWrites=true&w=majority&ssl=true&sslInvalidHostNameAllowed=truespring.data.mongodb.auto-index-creation=true
+      auto-index-creation: true
+  main:
+    allow-circular-references: true
+
+
+
+server:
+  port: 8080

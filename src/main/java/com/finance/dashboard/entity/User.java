@@ -1,6 +1,8 @@
 package com.finance.dashboard.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.finance.dashboard.constants.Role;
 import com.finance.dashboard.constants.Status;
 import lombok.AllArgsConstructor;
@@ -22,6 +24,8 @@ public class User {
 
     private String userName;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
     private String email;
 
     private Role role;

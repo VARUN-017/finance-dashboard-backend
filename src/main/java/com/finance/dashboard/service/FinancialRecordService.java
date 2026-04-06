@@ -35,17 +35,45 @@ public class FinancialRecordService {
         return financialRecord.findByUserId(userId);
     }
 
-    public List<FinancialRecord> filteredRecords(String userId, RecordType type) {
+    public List<FinancialRecord> getFilteredRecords(
+            String userId,
+            RecordType type,
+            String category,
+            LocalDateTime startDate,
+            LocalDateTime endDate) {
 
-        if (userId != null && type != null) {
-            return financialRecord.findByUserIdAndType(userId, type);
-        }
+        List<FinancialRecord> records = financialRecord.findAll();
 
         if (userId != null) {
-            return financialRecord.findByUserId(userId);
+            records = records.stream()
+                    .filter(r -> userId.equals(r.getUserId()))
+                    .toList();
         }
 
-        return financialRecord.findAll();
+        if (type != null) {
+            records = records.stream()
+                    .filter(r -> type.equals(r.getType()))
+                    .toList();
+        }
+
+        if (category != null) {
+            records = records.stream()
+                    .filter(r -> category.equalsIgnoreCase(r.getCategory()))
+                    .toList();
+        }
+
+        if (startDate != null && endDate != null) {
+            records = records.stream()
+                    .filter(r -> {
+                        LocalDateTime txnDate = r.getTransactionDate();
+                        return txnDate != null &&
+                                !txnDate.isBefore(startDate) &&
+                                !txnDate.isAfter(endDate);
+                    })
+                    .toList();
+        }
+
+        return records;
     }
 
 }

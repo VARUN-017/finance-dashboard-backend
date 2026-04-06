@@ -5,7 +5,7 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb+srv://varunyadava77:**Cloud12Winter**@cluster0.7zyhiuf.mongodb.net/finance_dashboard?retryWrites=true&w=majority&ssl=true&sslInvalidHostNameAllowed=truespring.data.mongodb.auto-index-creation=true
+      uri: YOUR_MONGODB_ATLAS_URI
       auto-index-creation: true
   main:
     allow-circular-references: true

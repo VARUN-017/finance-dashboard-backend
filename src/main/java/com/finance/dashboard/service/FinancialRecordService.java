@@ -4,6 +4,8 @@ import com.finance.dashboard.constants.RecordType;
 import com.finance.dashboard.entity.FinancialRecord;
 import com.finance.dashboard.repository.FinancialRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -74,6 +76,10 @@ public class FinancialRecordService {
         }
 
         return records;
+    }
+
+    public Page<FinancialRecord> getRecords(String userId, Pageable pageable) {
+        return financialRecord.findByUserId(userId, pageable);
     }
 
 }

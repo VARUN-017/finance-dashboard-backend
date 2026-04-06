@@ -2,6 +2,8 @@ package com.finance.dashboard.repository;
 
 import com.finance.dashboard.constants.RecordType;
 import com.finance.dashboard.entity.FinancialRecord;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.time.LocalDateTime;
@@ -14,4 +16,6 @@ public interface FinancialRecordRepository extends MongoRepository<FinancialReco
     List<FinancialRecord> findByUserIdAndType(String userId, RecordType type);
 
     List<FinancialRecord> findByTransactionDateBetween(LocalDateTime start, LocalDateTime end);
+
+    Page<FinancialRecord> findByUserId(String userId, Pageable pageable);
 }
